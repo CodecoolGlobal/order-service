@@ -4,12 +4,9 @@ package com.orderservice.orderservice.controller;
 import com.orderservice.orderservice.model.Order;
 import com.orderservice.orderservice.repository.OrderRepository;
 import com.orderservice.orderservice.service.OrderService;
-import org.bouncycastle.cert.ocsp.Req;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
