@@ -28,20 +28,19 @@ public class OrderController {
         return orderRepository.getOne(id);
     }
 
-    @GetMapping("/user-orders/{userId}")
+    @GetMapping("/user/{userId}")
     public List<Order> getOrderByUserId(@PathVariable Long userId){
         return orderRepository.findOrdersByUserId(userId);
     }
 
-    @GetMapping("/product-orders/{productId}")
+    @GetMapping("/product/{productId}")
     public List<Order> getOrderByProductId(@PathVariable Long productId){
         return orderRepository.findOrdersByProductId(productId);
     }
 
     @PostMapping("/")
     public Order addOrder(@RequestBody Order order){
-        Order neworder = orderRepository.save(order);
-        return neworder;
+        return orderRepository.save(order);
     }
 
     @PutMapping("/{id}")
@@ -53,13 +52,4 @@ public class OrderController {
     public void deleteOrder(@PathVariable Long id){
         orderRepository.deleteById(id);
     }
-
-//    @PostConstruct
-//    private void generateOrders(){
-//        LocalDateTime time = LocalDateTime.now();
-//        Order one = new Order(1l,1l,3l,time);
-//        Order two = new Order(2l,1l,2l,time);
-//        Order three = new Order(3l,3l,3l,time);
-//        orderRepository.save(one);
-//    }
 }
