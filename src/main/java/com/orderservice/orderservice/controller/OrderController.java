@@ -5,6 +5,7 @@ import com.orderservice.orderservice.model.Order;
 import com.orderservice.orderservice.repository.OrderRepository;
 import com.orderservice.orderservice.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,17 +40,26 @@ public class OrderController {
     }
 
     @PostMapping("/")
-    public Order addOrder(@RequestBody Order order){
-        return orderRepository.save(order);
+    public ResponseEntity<?> addOrder(@RequestBody Order order){
+        orderRepository.save(order);
+        return ResponseEntity
+                .accepted()
+                .body("Order was successfully submitted");
     }
 
     @PutMapping("/{id}")
-    public Order updateOrder(@PathVariable Long id, @RequestBody Order order){
-        return orderService.updateOrder(id,order);
+    public ResponseEntity<?> updateOrder(@PathVariable Long id, @RequestBody Order order){
+        orderService.updateOrder(id,order);
+        return ResponseEntity
+                .accepted()
+                .body("Order was successfully updated");
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOrder(@PathVariable Long id){
+    public ResponseEntity<?> deleteOrder(@PathVariable Long id){
         orderRepository.deleteById(id);
+        return ResponseEntity
+                .accepted()
+                .body("Order was successfully deleted");
     }
 }
